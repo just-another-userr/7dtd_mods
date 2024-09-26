@@ -1,0 +1,30 @@
+<configs>
+
+<setattribute xpath="/items/item[@name='ammo762mmBulletBall' or @name='ammo9mmBulletBall' or @name='ammoShotgunShell']/property[@name='Stacknumber']" name="value">3000</setattribute>
+
+<setattribute xpath="/items/item[@name='casinoCoin']/property[@name='Stacknumber']" name="value">1000000</setattribute>
+
+<csv xpath="/items/item[starts-with(@name, 'meleeToolRepair')]/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value" op="Add">resourceForgedLeadTMG</csv>
+
+<append xpath="/items">
+
+<item name="resourceForgedLeadTMG">
+    <property name="CustomIcon" value="resourceForgedSteel" />
+    <property name="CustomIconTint" value="#0000cc" />
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="MresourceScrapLeadSmall"/>
+	<property name="Stacknumber" value="2000"/> <!-- STK resource -->
+	<property name="EconomicValue" value="10"/>
+	<property name="Group" value="Resources"/>
+	<property name="CraftingIngredientTime" value="8"/>
+	<property name="RepairTime" value="1"/>
+	<property name="RepairAmount" value="400"/>
+	<property name="SoundPickup" value="forgedmetal_grab"/>
+	<property name="SoundPlace" value="forgedmetal_place"/>
+</item>
+
+</append>
+
+</configs>
