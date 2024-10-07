@@ -9,3 +9,6 @@ erinsShapesTMG:VariantHelperDesc, "Stronk"
 
 resourceForgedLeadTMG, "Forged Lead"
 resourceForgedLeadTMGDesc, "Forged Lead, cause the tutorial said so"
+
+drinkErinsRageTMG, "Erin's Rage"
+drinkErinsRageTMGDesc, "Burns going in and out!"
