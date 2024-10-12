@@ -1,0 +1,159 @@
+<configs>
+
+
+<!-- Stack size modifications -->
+<setattribute xpath="/items/item[@name='ammo762mmBulletBall' or @name='ammo9mmBulletBall' or @name='ammoShotgunShell']/property[@name='Stacknumber']" name="value">3000</setattribute>
+<setattribute xpath="/items/item[@name='casinoCoin']/property[@name='Stacknumber']" name="value">1000000</setattribute>
+<setattribute xpath="/items/item[@name='drugVitamins']/property[@name='Stacknumber']" name="value">6000</setattribute>
+<setattribute xpath="/items/item[@name='ammoGasCan']/property[@name='Stacknumber']" name="value">100000</setattribute>
+<setattribute xpath="/items/item[@name='medicalFirstAidBandage' or @name='medicalFirstAidKit']/property[@name='Stacknumber']" name="value">20</setattribute>
+
+<!-- Add Forged Lead to allowed upgrade items for the repair tools -->
+<csv xpath="/items/item[starts-with(@name, 'meleeToolRepair')]/property[@class='Action1']/property[@name='Allowed_upgrade_items']/@value" op="Add">resourceForgedLeadTMG</csv>
+
+<!-- Add unlocked property to vitamin item -->
+<insertafter xpath="/items/item[@name='drugVitamins']/property[@name='Stacknumber']">
+	<property name="UnlockedBy" value="craftingMedical"/>
+</insertafter>
+
+<!-- Append flaming shotgun ammo to the allowed ammo list for all shotguns-->
+<csv xpath="/items/item[starts-with(@name, 'gunShotgunT')]/property[@class='Action0']/property[@name='Magazine_items']/@value" op="Add">ammoShotgunShellIncendiaryTMG</csv>
+
+<!-- Begin appends for ForgedTitanium and Forged Lead + Erin's Rage -->
+<append xpath="/items">
+
+<item name="resourceForgedTitaniumTMG">
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="Mmetal"/>
+	<property name="Stacknumber" value="500"/> <!-- STK resource -->
+	<property name="EconomicValue" value="100"/>
+	<property name="Group" value="Resources"/>
+	<property name="RepairTime" value="1"/>
+	<property name="RepairAmount" value="1000"/>
+</item>
+
+<item name="resourceForgedLeadTMG">
+    <property name="CustomIcon" value="resourceForgedSteel" />
+    <property name="CustomIconTint" value="#0000cc" />
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="MresourceScrapLeadSmall"/>
+	<property name="Stacknumber" value="2000"/> <!-- STK resource -->
+	<property name="EconomicValue" value="10"/>
+	<property name="Group" value="Resources"/>
+	<property name="CraftingIngredientTime" value="8"/>
+	<property name="RepairTime" value="1"/>
+	<property name="RepairAmount" value="400"/>
+	<property name="SoundPickup" value="forgedmetal_grab"/>
+	<property name="SoundPlace" value="forgedmetal_place"/>
+</item>
+
+<item name="drinkErinsRageTMG">
+    <property name="CustomIcon" value="drinkYuccaJuiceSmoothie" />
+    <property name="CustomIconTint" value="#fc5203" />
+	<property name="Tags" value="drinks,foodSkill,fitness"/>
+	<property name="HoldType" value="3"/>
+	<property name="DisplayType" value="drinkYuccaSmoothie"/>
+	<property name="Meshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="Mglass"/>
+	<property name="Stacknumber" value="6000"/> <!-- STK drink -->
+	<!-- <property name="Weight" value="10"/> -->
+	<property name="EconomicValue" value="156"/>
+	<property name="UnlockedBy" value="craftingFood"/><!-- perkMasterChef,drinkYuccaJuiceSmoothieSchematic, -->
+	<property name="SoundPickup" value="jars_grab"/>
+	<property name="SoundPlace" value="jars_place"/>
+	<property class="Action0">
+		<property name="Class" value="Eat"/>
+		<property name="Delay" value="1.0"/>
+		<property name="Sound_start" value="player_drinking"/>
+		<!-- <property name="Create_item" value="drinkJarEmpty"/> -->
+	</property>
+	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+	<effect_group tiered="false" name="Drink Tier 3">
+		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
+			<display_value name="dHarvestSalvage" value=".2"/>
+			<display_value name="dDuration" value="363"/>
+			<passive_effect name="RunSpeed" operation="perc_add" value=".2"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffDrugHackersDuration" operation="add" value="363"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffDrugHackersDuration" operation="set" value="363">
+			<requirement name="CVarCompare" cvar="$buffDrugHackersDuration" operation="GT" value="363"/></triggered_effect>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugHackers"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
+	</effect_group>
+
+
+	<effect_group tiered="false">
+		<requirement name="HasBuff" buff="buffIsOnFire"/>
+			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffExtinguishFire"/>
+	</effect_group>
+</item>
+
+<!-- 
+<item name="ammoShotgunShellIncendiaryTMG">
+	<property name="Tags" value="ammo,shotgun,ammoShells"/>
+	<property name="DisplayType" value="ammoShotgun"/>
+	<property name="HoldType" value="45"/>
+	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
+	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
+	<property name="Material" value="Mlead_scrap"/>
+	<property name="TraderStageTemplate" value="ammoTier1"/>
+	<property name="Group" value="Ammo/Weapons,Ammo,Ranged Weapons"/>
+	<property name="SoundPickup" value="shotgunshells_grab"/>
+	<property name="SoundPlace" value="shotgunshells_place"/>
+	<property name="Stacknumber" value="3000"/>
+	<property name="ActivationTransformToHide" value="LightMover;Flames;Smoke;ClothFlames;ClothFlamesLight"/>
+	<property name="EconomicValue" value="19"/>
+	<effect_group name="ammoShotgunShell" tiered="false">
+		<passive_effect name="EntityDamage" operation="base_set" value="10.1" tags="perkBoomstick"/>
+		<passive_effect name="BlockDamage" operation="base_set" value="5.4" tags="perkBoomstick"/>
+		<passive_effect name="RoundRayCount" operation="base_set" value="10" tags="perkBoomstick"/>
+		<passive_effect name="dEntityDamageFire" value="120"/>
+		<passive_effect name="dDuration" value="14"/>
+		<passive_effect name="MaxRange" operation="base_set" value="10" tags="perkBoomstick"/>
+		<passive_effect name="DamageFalloffRange" operation="base_set" value="4" tags="perkBoomstick"/>
+		<passive_effect name="EntityPenetrationCount" operation="base_set" value="2" tags="perkBoomstick"/>
+		<passive_effect name="BlockPenetrationFactor" operation="base_set" value="51" tags="perkBoomstick"/>
+		<passive_effect name="SpreadDegreesVertical" operation="base_set" value="4.5" tags="perkBoomstick"/>
+		<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="4.5" tags="perkBoomstick"/>
+		<passive_effect name="SpreadMultiplierAiming" operation="perc_add" value="-.13" tags="perkBoomstick"/>
+		<passive_effect name="SpreadMultiplierCrouching" operation="perc_add" value="-.05" tags="perkBoomstick"/>
+		<passive_effect name="SpreadMultiplierWalking" operation="perc_add" value=".15" tags="perkBoomstick"/>
+		<passive_effect name="SpreadMultiplierRunning" operation="perc_add" value=".3" tags="perkBoomstick"/>
+		<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
+	</effect_group>
+	<property class="Action1">
+		<property name="Gravity" value="-5"/>
+		<property name="DamageBonus.wood" value="2"/>
+	</property>
+	<effect_group name="ammoShotgunFlaming" tiered="false">
+		<passive_effect name="EntityDamage" operation="base_set" value="25" tags="perkArchery"/>
+		<passive_effect name="BlockDamage" operation="base_set" value="6" tags="perkArchery"/>
+		<passive_effect name="BlockDamage" operation="base_add" value="50" tags="barrelExplosive"/>
+		<passive_effect name="DamageModifier" operation="perc_set" value=".1" tags="wood"/>
+		<passive_effect name="DamageModifier" operation="perc_set" value="0" tags="earth,cloth"/>
+		<passive_effect name="ProjectileVelocity" operation="base_set" value="40" tags="perkArchery"/>
+		<passive_effect name="ProjectileStickChance" operation="perc_set" value="0"/>
+
+		<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="other" cvar="$buffBurningAmmoShotgunDuration" operation="set" value="14">
+			<requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="0"/></triggered_effect>
+		<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="other" cvar="$buffBurningAmmoShotgunDuration" operation="set" value="15">
+			<requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="1"/></triggered_effect>
+
+		<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="other" buff="buffBurningAmmoShotgun">
+			<requirement name="CVarCompare" target="other" cvar="_underwater" operation="LT" value="0.3"/>
+		</triggered_effect>
+
+		<display_value name="dEntityDamageFire" value="120"/>
+		<display_value name="dDuration" value="14"/>
+	</effect_group>
+</item>
+
+-->
+
+</append>
+
+</configs>

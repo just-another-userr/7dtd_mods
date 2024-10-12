@@ -1,0 +1,7 @@
+<configs>
+
+<append xpath="/lootcontainers/lootgroup[@name='groupDrinksRare' or @name='rareFoodDrink']">
+    <item name="drinkErinsRageTMG" />
+</append>
+
+</configs>

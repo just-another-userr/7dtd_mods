@@ -1,0 +1,17 @@
+key,English
+resourceForgedTitaniumTMG,"Forged Titanium"
+resourceForgedTitaniumTMGDesc,"The Titanium bars we made along the way. Used to craft Lost Arks and other oddities."
+
+materialMerins_shapesTMG, "Forged Ragetainium"
+materialMerins_shapesTMGDesc, "Stronk"
+erinsShapesTMG:VariantHelper, "Forged Ragetanium Block"
+erinsShapesTMG:VariantHelperDesc, "Stronk"
+
+resourceForgedLeadTMG, "Forged Lead"
+resourceForgedLeadTMGDesc, "Forged Lead, cause the tutorial said so"
+
+drinkErinsRageTMG, "Erin's Rage"
+drinkErinsRageTMGDesc, "Burns going in and out!"
+
+perkRunFasterTMG, "Run Forrest Run"
+perkRunFasterTMGDesc, "Sprint into Danger faster with this perk"
