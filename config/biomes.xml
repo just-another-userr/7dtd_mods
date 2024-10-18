@@ -1,0 +1,5 @@
+<config>
+
+    <setattribute xpath="/worldgeneration/biomes/biome[@name='wasteland']/weather/CloudThickness[@min='10']" name="max">20</setattribute>
+
+</config>

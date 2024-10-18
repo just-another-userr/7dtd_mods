@@ -95,8 +95,13 @@
 
 </append>
 -->
+		<!-- Book to unlock incediary shotgun ammo -->
+		
+		<insertafter xpath="/progression/perks/book[@name='perkShotgunMessiahComplete']/effect_group/passive_effect[@name='BlockDamage']">
+				<passive_effect name="RecipeTagUnlocked" operation="base_set" level="1" value="1" tags="ammoShotgunShellIncendiaryTMG"/>
+		</insertafter>	
 
-<!-- Run Speed increase -->
+	<!-- Run Speed increase -->
     <append xpath="/progression/perks">
 
         <!-- LightArmorPerk -->

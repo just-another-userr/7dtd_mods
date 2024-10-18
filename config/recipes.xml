@@ -71,6 +71,12 @@
 		<ingredient name="drinkJarBoiledWater" count="1"/>
 	</recipe>
 
+	<recipe name="ammoShotgunShellIncendiaryTMG" count="1" craft_area="workbench" tags="learnable,workbenchCrafting" craft_time="3">
+		<ingredient name="resourceBuckshot" count="1"/>
+		<ingredient name="resourceGunPowder" count="4"/>
+		<ingredient name="ammoGasCan" count="10"/>
+		<ingredient name="resourceCloth" count="3"/>
+	</recipe>
 
 </append>
 

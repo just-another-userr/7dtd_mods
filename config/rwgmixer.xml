@@ -1,0 +1,8 @@
+<config>
+<!-- Attempt #1 to add hedge maze to RWG-->
+<!-- 
+    <append xpath="/rwgmixer">
+        <prefab_spawn_adjust partial_name="hedgeMaze_v2" biomeTags="forest" bias="20" min_count="2" max_count="4"/>
+    </append>
+-->
+</config>

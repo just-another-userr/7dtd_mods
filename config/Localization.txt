@@ -13,5 +13,8 @@ resourceForgedLeadTMGDesc, "Forged Lead, cause the tutorial said so"
 drinkErinsRageTMG, "Erin's Rage"
 drinkErinsRageTMGDesc, "Burns going in and out!"
 
-perkRunFasterTMG, "Run Forrest Run"
+perkRunFasterTMG, "Barry Allen's protegee"
 perkRunFasterTMGDesc, "Sprint into Danger faster with this perk"
+
+ammoShotgunShellIncendiaryTMG, "Flaming Shotgun Shells"
+ammoShotgunShellIncendiaryTMGDesc, "Bring the heat with these incediary shotgun rounds. Great for gaslighting zombies!"

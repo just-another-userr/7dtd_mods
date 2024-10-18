@@ -56,13 +56,13 @@
     <property name="CustomIconTint" value="#fc5203" />
 	<property name="Tags" value="drinks,foodSkill,fitness"/>
 	<property name="HoldType" value="3"/>
-	<property name="DisplayType" value="drinkYuccaSmoothie"/>
+	<property name="DisplayType" value="drinkErinsRageTMG"/>
 	<property name="Meshfile" value="@:Other/Items/Food/bottled_waterPrefab.prefab"/>
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
 	<property name="Material" value="Mglass"/>
 	<property name="Stacknumber" value="6000"/> <!-- STK drink -->
 	<!-- <property name="Weight" value="10"/> -->
-	<property name="EconomicValue" value="156"/>
+	<property name="EconomicValue" value="200"/>
 	<property name="UnlockedBy" value="craftingFood"/><!-- perkMasterChef,drinkYuccaJuiceSmoothieSchematic, -->
 	<property name="SoundPickup" value="jars_grab"/>
 	<property name="SoundPlace" value="jars_place"/>
@@ -72,30 +72,33 @@
 		<property name="Sound_start" value="player_drinking"/>
 		<!-- <property name="Create_item" value="drinkJarEmpty"/> -->
 	</property>
-	<property name="Group" value="Food/Cooking,CFDrink/Cooking"/>
+	<!-- <property name="Group" value="Food/Cooking,CFDrink/Cooking"/> -->
 	<effect_group tiered="false" name="Drink Tier 3">
+		<passive_effect name="BuffBlink" operation="base_set" value="2" duration="0,3" tags="buffBurningElement"/>	
 		<requirement name="NotHasBuff" buff="buffIsOnFire"/>
-			<display_value name="dHarvestSalvage" value=".2"/>
-			<display_value name="dDuration" value="363"/>
-			<passive_effect name="RunSpeed" operation="perc_add" value=".2"/>
+		<display_value name="dHarvestSalvage" value=".2"/>
+		<display_value name="dRunSpeed" value=".2"/>
+		<display_value name="dDuration" value="363"/>
+		<passive_effect name="RunSpeed" operation="perc_add" value=".2"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffMegaCrushDuration" operation="add" value="363"/>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffMegaCrushDuration" operation="set" value="363">
+			<requirement name="CVarCompare" cvar="$buffMegaCrushDuration" operation="GT" value="363"/></triggered_effect>
+		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables,buffMegaCrush"/>
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffDrugHackersDuration" operation="add" value="363"/>
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$buffDrugHackersDuration" operation="set" value="363">
 			<requirement name="CVarCompare" cvar="$buffDrugHackersDuration" operation="GT" value="363"/></triggered_effect>
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffDrugHackers"/>
 		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffProcessConsumables"/>
 	</effect_group>
-
-
 	<effect_group tiered="false">
 		<requirement name="HasBuff" buff="buffIsOnFire"/>
 			<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" buff="buffExtinguishFire"/>
 	</effect_group>
 </item>
 
-<!-- 
 <item name="ammoShotgunShellIncendiaryTMG">
 	<property name="Tags" value="ammo,shotgun,ammoShells"/>
-	<property name="DisplayType" value="ammoShotgun"/>
+	<property name="DisplayType" value="ammoShotgunShellIncendiaryTMG"/>
 	<property name="HoldType" value="45"/>
 	<property name="Meshfile" value="@:Other/Items/Misc/sackPrefab.prefab"/>
 	<property name="DropMeshfile" value="@:Other/Items/Misc/sack_droppedPrefab.prefab"/>
@@ -105,14 +108,14 @@
 	<property name="SoundPickup" value="shotgunshells_grab"/>
 	<property name="SoundPlace" value="shotgunshells_place"/>
 	<property name="Stacknumber" value="3000"/>
-	<property name="ActivationTransformToHide" value="LightMover;Flames;Smoke;ClothFlames;ClothFlamesLight"/>
-	<property name="EconomicValue" value="19"/>
+	<property name="Damage_type" value="Heat"/>
+	<property name="UnlockedBy" value="perkShotgunMessiahComplete"/> <!-- BOOK_PERK -->
+	<!-- <property name="ActivationTransformToHide" value="LightMover;Flames;Smoke;ClothFlames;ClothFlamesLight"/> -->
+	<property name="EconomicValue" value="25"/>
 	<effect_group name="ammoShotgunShell" tiered="false">
-		<passive_effect name="EntityDamage" operation="base_set" value="10.1" tags="perkBoomstick"/>
+		<passive_effect name="EntityDamage" operation="base_set" value="12" tags="perkBoomstick"/>
 		<passive_effect name="BlockDamage" operation="base_set" value="5.4" tags="perkBoomstick"/>
 		<passive_effect name="RoundRayCount" operation="base_set" value="10" tags="perkBoomstick"/>
-		<passive_effect name="dEntityDamageFire" value="120"/>
-		<passive_effect name="dDuration" value="14"/>
 		<passive_effect name="MaxRange" operation="base_set" value="10" tags="perkBoomstick"/>
 		<passive_effect name="DamageFalloffRange" operation="base_set" value="4" tags="perkBoomstick"/>
 		<passive_effect name="EntityPenetrationCount" operation="base_set" value="2" tags="perkBoomstick"/>
@@ -124,35 +127,44 @@
 		<passive_effect name="SpreadMultiplierWalking" operation="perc_add" value=".15" tags="perkBoomstick"/>
 		<passive_effect name="SpreadMultiplierRunning" operation="perc_add" value=".3" tags="perkBoomstick"/>
 		<passive_effect name="DamageModifier" operation="perc_add" value="-.8" tags="earth"/>
-	</effect_group>
-	<property class="Action1">
-		<property name="Gravity" value="-5"/>
-		<property name="DamageBonus.wood" value="2"/>
-	</property>
-	<effect_group name="ammoShotgunFlaming" tiered="false">
-		<passive_effect name="EntityDamage" operation="base_set" value="25" tags="perkArchery"/>
-		<passive_effect name="BlockDamage" operation="base_set" value="6" tags="perkArchery"/>
-		<passive_effect name="BlockDamage" operation="base_add" value="50" tags="barrelExplosive"/>
-		<passive_effect name="DamageModifier" operation="perc_set" value=".1" tags="wood"/>
-		<passive_effect name="DamageModifier" operation="perc_set" value="0" tags="earth,cloth"/>
-		<passive_effect name="ProjectileVelocity" operation="base_set" value="40" tags="perkArchery"/>
-		<passive_effect name="ProjectileStickChance" operation="perc_set" value="0"/>
-
-		<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="other" cvar="$buffBurningAmmoShotgunDuration" operation="set" value="14">
-			<requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="0"/></triggered_effect>
-		<triggered_effect trigger="onProjectileImpact" action="ModifyCVar" target="other" cvar="$buffBurningAmmoShotgunDuration" operation="set" value="15">
-			<requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="1"/></triggered_effect>
-
-		<triggered_effect trigger="onProjectileImpact" action="AddBuff" target="other" buff="buffBurningAmmoShotgun">
+		<display_value name="dEntityDamageFire" value="200"/>
+		<display_value name="dDuration" value="5"/>
+		<!-- <triggered_effect trigger="onProjectileImpact" action="AddBuff" target="other" buff="buffBurningFlamingArrow">
 			<requirement name="CVarCompare" target="other" cvar="_underwater" operation="LT" value="0.3"/>
-		</triggered_effect>
-
-		<display_value name="dEntityDamageFire" value="120"/>
-		<display_value name="dDuration" value="14"/>
+		</triggered_effect> -->
 	</effect_group>
+	<effect_group name="new Fire Proc" tiered="false">
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".93"/> <!-- Ensure the target is not underwater -->
+                <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="100"/> <!-- 100% chance for fire effect -->
+                
+                <!-- Triggers a burning buff on the entity hit by the weapon -->
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffBurningElement"/>
+                
+                <!-- Sets the duration of the burning effect based on the player's progression level -->
+                <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$buffBurningElementDuration" operation="set" value="10">
+                    <requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="0"/>
+                </triggered_effect>
+                <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$buffBurningElementDuration" operation="set" value="11">
+                    <requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="1"/>
+                </triggered_effect>
+            </effect_group>
+            
+            <!-- Fire Proc Refresh Effect Group -->
+            <!-- This effect group ensures that an existing burning effect on an entity is refreshed when hit again -->
+            <effect_group name="always refresh existing Fire Proc" tiered="false">
+                <requirement name="CVarCompare" cvar="_underwater" operation="LT" value=".93"/> <!-- Ensure the target is not underwater -->
+                <requirement name="HasBuff" target="other" buff="buffBurningElement"/> <!-- Only apply if the target already has the burning buff -->
+                
+                <!-- Refreshes the burning buff on the entity hit by the weapon -->
+                <triggered_effect trigger="onSelfAttackedOther" action="AddBuff" target="other" buff="buffBurningElement"/>
+                
+                <!-- Sets the duration of the burning effect based on the player's progression level -->
+                <triggered_effect trigger="onSelfAttackedOther" action="ModifyCVar" target="other" cvar="$buffBurningElementDuration" operation="set" value="11">
+                    <requirement name="ProgressionLevel" progression_name="perkFiremansAlmanacMolotov" operation="Equals" value="1"/>
+                </triggered_effect>
+            </effect_group>
+			
 </item>
-
--->
 
 </append>
 

@@ -15,15 +15,17 @@ Stack Size Increases:
 
 
 New Items: 
-    Erin's Rage drink (Still in implementation)
+    Erin's Rage drink
     Forged Titanium
-    Ragetanium (Upgrades from steel blocks)
-    Forged Lead - Used to craft and repair Erin's steel blocks (Increased recipe material cost)
+    Ragetanium (Erin's Steel Shapes) - Steel block upgrade 
+    Forged Lead - Used to craft and repair Ragetanium (Increased recipe material cost)
+    Flaming shotgun ammo
 
 Newly Craftable items: 
     Vitamins are now craftable (Unlocked at level 75 medicine)
     Ragetainium blocks
-    Forged Lead bars to upgrade steel to ragetanium 
+    Forged Lead bars to upgrade steel to ragetanium (also used to repair ragetanium)
+
 
 Harvesting: 
     Player planted crops will always drop a seed on harvest
@@ -31,7 +33,8 @@ Harvesting:
     Wild mushrooms will always drop a seed on harvest
 
 Changes to existing functionality: 
-    Steroids are craftable at level 15 
+    Steroids are craftable at medical level 15 
+    Increased motherlode gains by 50% per level
 
 New Perks: 
     Speed demon - Increase run speed
@@ -43,5 +46,16 @@ New Perks:
 Nerfed Erin's rage, reduced material cost to craft
 Commented out Forged Titanium for now as it doesn't really have any uses
 Added Run speed perk 
-Balanced out the motherlode gain
+Lowered the motherlode gain we tweaked previously. Now, there is a 50% increase in every level and not the 100% we originally had set
 Gave level 3 of the parkour skill a slight jump height increase
+
+20241016 - 
+Added Erin's rage to vending machines
+Figured out the stats display and corrected it for Erin's rage
+Fixed bug with Erin's rage that wasn't showing the megacrush icon when consumed
+
+20241018 - 
+Figured out how to add the flaming buff to the ammo 
+Added stats to the flaming shotgun ammo 
+Created recipe for flaming shotgun ammo
+
