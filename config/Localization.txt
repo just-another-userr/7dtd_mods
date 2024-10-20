@@ -17,4 +17,7 @@ perkRunFasterTMG, "Barry Allen's protegee"
 perkRunFasterTMGDesc, "Sprint into Danger faster with this perk"
 
 ammoShotgunShellIncendiaryTMG, "Flaming Shotgun Shells"
-ammoShotgunShellIncendiaryTMGDesc, "Bring the heat with these incediary shotgun rounds. Great for gaslighting zombies!"
+ammoShotgunShellIncendiaryTMGDesc, "Bring the heat with these incendiary shotgun rounds. Great for gaslighting zombies!"
+
+ammo44MagnumFlamingTMG, "Flaming .44 ammo"
+ammo44MagnumFlamingTMGDesc, "Bring the heat with these incendiary 44 rounds. Great for gaslighting zombies!"

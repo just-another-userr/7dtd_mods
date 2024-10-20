@@ -59,3 +59,8 @@ Figured out how to add the flaming buff to the ammo
 Added stats to the flaming shotgun ammo 
 Created recipe for flaming shotgun ammo
 
+20241020 - 
+Added flaming 44 ammo by request 
+Added recipe for flaming 44 ammo 
+Added stats to flaming 44 ammo 
+

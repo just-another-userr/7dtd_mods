@@ -23,6 +23,8 @@
         <property name="FilterTags" value="MC_Shapes"/>
     </block>
 
+
+
 </append>
 
 <append xpath="/blocks/block[@name='steelShapes']">
